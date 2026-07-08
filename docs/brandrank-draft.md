@@ -141,6 +141,20 @@ Each order of magnitude is a different game; the channel that gets you one stage
 
 **Honesty checkpoint**: 1,000 customers ≈ $85–120k MRR — ~3× what Rank Prompt reached in 14 months. Stages one through three are evidenced by the target's own curve; stage four is a 2+ year outcome that most micro-SaaS never reach and likely requires decisively winning the agency channel or owning a vertical. The month-12 gate ($25k MRR) is where you choose: push for 1,000, or run a very profitable smaller business.
 
+### 8c. Outbound agent: report-led cold email (the "free report" onboarding engine)
+
+Automated give-first outreach: an agent pre-scans prospects and cold-emails one real finding, linking to their full free report — the report page doubles as onboarding ("track this weekly").
+
+**Pipeline**: ICP list (licensed B2B data, role-targeted: marketing/growth/SEO titles) → cheap pre-scan (5 prompts × 2 cheap engines ≈ $0.03/prospect) → agent extracts one falsifiable hook ("ChatGPT recommends [Competitor] first; you're absent in 4/5 answers") → 4-sentence plain-text email with a link (never attachments) → click triggers the full scan → hosted report → one-click weekly tracking → ≤2 follow-ups → suppress.
+
+**Hard requirements** (product features, not afterthoughts):
+- Separate sending domain (never the product domain), warmed 2–4 weeks, 30–50/day/inbox.
+- Compliance by design: work emails only, job-relevant targeting, instant global opt-out + suppression list, truthful subjects, physical address (CAN-SPAM); EU is country-specific (CNIL-style B2B tolerance in FR, stricter in DE) — licensed data sources only.
+- Honesty rule: if the prospect ranks well, the email says so. Manufactured fear at scale = screenshot risk in the exact pond we're trying to own.
+- First 100 sends human-reviewed (agent drafts, founder approves) before full automation.
+
+**Funnel math** @1,000/mo: ~50–60% open → 5–10% report clicks → 20–30% of viewers start tracking → 25% trial→paid ≈ **3–7 customers/1,000 emails**. Costs ≈ $200–300 all-in → **CAC $40–90** vs $85–120 ARPU. Slots into stage 10→100 as the controllable outbound engine while SEO compounds.
+
 ## 9. Build plan — 12 weeks, A → Z
 
 **Weeks 1–2 — skeleton.** Auth, orgs/brands/prompts models, Stripe plans, onboarding wizard (domain → generated prompt set). One engine (Perplexity — cheapest, citation-native) end-to-end: collect → extract → score → chart. *Milestone: your own brand tracked, real score on screen.*
