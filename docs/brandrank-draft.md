@@ -106,8 +106,10 @@ Rank Prompt's own listed profile proves commodity infra suffices. BrandRank:
 |---|---|---|---|---|---|
 | Free scan | $0 | 1 (one-shot) | 10 | once | 2 | 
 | Solo | $29 / $24 | 1 | 50 | weekly | 4 |
-| Growth | $79 / $66 | 3 | 150/brand | 2×/week | 4 + AI Overviews |
-| Agency | $199 / $166 | 15 | 150/brand | daily (top engines) | all + white-label reports |
+| Growth | $79 / $66 | 3 | 50/brand | weekly full + 2×/week cheap engines | 4 + AI Overviews |
+| Agency | $199 / $166 | 15 | 50/brand | weekly full + daily cheap engines | all + white-label reports |
+
+*Allowance/cadence math is COGS-driven: checks cost ~$0.002 (SERP-scraped AI Overviews) to ~$0.035 (Gemini grounding) each; these tiers land at ~55–70% (Solo), ~60% (Growth), ~50% (Agency) gross margin. Daily full-engine sweeps on a $79 plan would be underwater — cadence is the unit-economics lever.*
 
 - Undercuts Rank Prompt at entry, matches at agency, zero credit math anywhere.
 - **The free scan is the growth engine, not a plan** (see §8).
