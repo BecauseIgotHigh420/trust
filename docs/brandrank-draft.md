@@ -129,6 +129,18 @@ Rank Prompt's own channels — blog, content, newsletter, all organic — are th
 
 **KPI targets**: free scans → trial 15%, trial → paid 25%, month-3 logo churn <5% (the Monday Report is the churn weapon). 100 paying × $85 ≈ $8.5k MRR by month 6 = realistic good outcome; Rank Prompt's curve says the ceiling is much higher.
 
+### 8b. Distribution by stage: 1 → 10 → 100 → 1,000
+
+Each order of magnitude is a different game; the channel that gets you one stage won't get you the next.
+
+| Stage | Timeline | Dominant channel | The move | What kills you |
+|---|---|---|---|---|
+| **0→10** | wk 1–8 | You, manually | DM prospects WITH their scan already run ("ChatGPT recommends your competitor for 6/10 prompts — want the report?"). 30–50 personalized outreaches → 10 design partners → first payer ~wk 6. If none of 10 will pay $29 after seeing their report, fix the report, not the marketing. | Building features instead of talking to these 10 people |
+| **10→100** | mo 2–6 | Free scan + launch spikes | Ship `/scan`; stack PH/HN/newsletter spikes; plant 10–15 bottom-funnel pages now (they rank at the next stage). ~90 customers ≈ ~2,400 scans at the 3.75% scan→paid funnel (~500–600 scans/mo; ~$90/mo COGS). Need ~2,500–3,500 high-intent visitors/mo (Rank Prompt's own $3.44/visitor benchmarks this). | Channel-spreading; churn (7%/mo = 7 resales/mo to stand still) |
+| **100→1,000** | mo 6–24+ | Compounding assets | SEO flywheel matures (~25–30k visitors/mo); AI Visibility Index earns links/press; **agencies as the multiplier** — ~80–120 agencies × 5–15 brands beats 1,000 one-by-one sales; white-label Monday Reports market you to their clients; 20–25% affiliate program; retargeting-only paid (CAC $50–100 works at $85–120 ARPU). Meta-move: use the product on itself so AI engines recommend BrandRank for "check my AI visibility". | Churn math at scale (NRR > new logos), category consolidation — the wedge must be sharp before incumbents notice you |
+
+**Honesty checkpoint**: 1,000 customers ≈ $85–120k MRR — ~3× what Rank Prompt reached in 14 months. Stages one through three are evidenced by the target's own curve; stage four is a 2+ year outcome that most micro-SaaS never reach and likely requires decisively winning the agency channel or owning a vertical. The month-12 gate ($25k MRR) is where you choose: push for 1,000, or run a very profitable smaller business.
+
 ## 9. Build plan — 12 weeks, A → Z
 
 **Weeks 1–2 — skeleton.** Auth, orgs/brands/prompts models, Stripe plans, onboarding wizard (domain → generated prompt set). One engine (Perplexity — cheapest, citation-native) end-to-end: collect → extract → score → chart. *Milestone: your own brand tracked, real score on screen.*
