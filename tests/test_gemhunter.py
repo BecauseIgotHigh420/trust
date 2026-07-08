@@ -55,6 +55,27 @@ class TestScoring:
         gems = score_gems(pool, min_monthly_revenue=100, now=NOW)
         assert [g.startup.name for g in gems] == ["real"]
 
+    def test_decline_penalised_below_flat_and_growth(self):
+        # Identical on every axis except 30d growth, so growth alone orders them.
+        # A shrinking startup (-50%) must rank below a flat one (0%), which must
+        # rank below a growing one (+200%) — the old code floored all of these
+        # to a tie at 0.
+        pool = [
+            _startup("shrinking", 2, last30=5000, total=10000, growth=-50, rpv=1.0),
+            _startup("flat", 2, last30=5000, total=10000, growth=0, rpv=1.0),
+            _startup("growing", 2, last30=5000, total=10000, growth=200, rpv=1.0),
+        ]
+        order = [g.startup.name for g in score_gems(pool, min_monthly_revenue=100, now=NOW)]
+        assert order == ["growing", "flat", "shrinking"]
+
+    def test_growth_subscore_is_signed(self):
+        pool = [
+            _startup("down", 2, last30=5000, total=10000, growth=-40, rpv=1.0),
+            _startup("up", 2, last30=5000, total=10000, growth=40, rpv=1.0),
+        ]
+        gems = {g.startup.name: g for g in score_gems(pool, min_monthly_revenue=100, now=NOW)}
+        assert gems["down"].score_breakdown["growth"] < gems["up"].score_breakdown["growth"]
+
     def test_ranking_orders_by_score(self):
         pool = [
             _startup("weak", 5, last30=150, total=200, growth=5, rpv=0.1),

@@ -30,10 +30,23 @@ DEFAULT_WEIGHTS = {
 
 
 def _log1p_clamped(value: float | None, cap: float) -> float:
-    """log1p with a non-negative, capped input — tames outliers and negatives."""
+    """log1p with a non-negative, capped input — for money, where negatives are noise."""
     v = max(float(value or 0.0), 0.0)
     v = min(v, cap)
     return math.log1p(v)
+
+
+def _signed_log_clamped(value: float | None, cap: float) -> float:
+    """Signed log for values that can legitimately be negative (e.g. growth %).
+
+    Preserves direction: decline maps below flat, which maps below growth —
+    unlike ``_log1p_clamped`` which floors every negative to 0 (treating a
+    shrinking startup the same as a stagnant one). Symmetric clamp keeps the
+    explosive tails of tiny-base young startups from dominating.
+    """
+    v = float(value or 0.0)
+    v = max(-cap, min(v, cap))
+    return math.copysign(math.log1p(abs(v)), v)
 
 
 def _normalise(values: list[float]) -> list[float]:
@@ -90,8 +103,10 @@ def score_gems(
         velocities.append(velocity)
         raw["traction"].append(_log1p_clamped(s.mrr, cap=5_000_000))
         raw["velocity"].append(_log1p_clamped(velocity, cap=5_000_000))
-        # growth30d is a percent (e.g. 120 == 120%); clamp the crazy tails.
-        raw["growth"].append(_log1p_clamped(s.growth30d, cap=2_000))
+        # growth30d is a signed percent (e.g. 120 == +120%, -32 == -32%).
+        # Signed transform so decline is penalised, not floored to neutral;
+        # cap tames the explosive tails of near-zero-base young startups.
+        raw["growth"].append(_signed_log_clamped(s.growth30d, cap=1_000))
         raw["efficiency"].append(_log1p_clamped(s.revenuePerVisitor, cap=1_000))
 
     norm = {k: _normalise(v) for k, v in raw.items()}
