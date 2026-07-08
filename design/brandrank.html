@@ -1,0 +1,660 @@
+<title>BrandRank — design concept</title>
+<style>
+  :root {
+    --ground:#F5F8F8; --surface:#FFFFFF; --ink:#16232A; --ink-2:#52646E; --ink-3:#7E8F97;
+    --line:#DCE5E7; --accent:#0A7A93; --accent-ink:#075E72; --accent-soft:#E3F0F3;
+    --pass:#1F7A4D; --pass-soft:#E4F2EA; --warn:#B77817; --warn-soft:#F7EEDD;
+    --fail:#B3423A; --fail-soft:#F7E7E5;
+    --you:#0A7A93; --comp1:#5E7079; --comp2:#81959E;
+    --serif:'Charter','Iowan Old Style',Georgia,'Times New Roman',serif;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono','Cascadia Code',Menlo,Consolas,monospace;
+    --shadow:0 1px 2px rgba(22,35,42,.05),0 8px 24px -12px rgba(22,35,42,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:#0D1518; --surface:#141F24; --ink:#E4ECEE; --ink-2:#93A6AD; --ink-3:#6E828B;
+      --line:#243239; --accent:#53BDD1; --accent-ink:#7FD0DF; --accent-soft:#12333C;
+      --pass:#4CC38A; --pass-soft:#12312383; --warn:#E2A33C; --warn-soft:#33270e83;
+      --fail:#E07A6E; --fail-soft:#38191583;
+      --you:#53BDD1; --comp1:#93A9B2; --comp2:#6C828C;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0D1518; --surface:#141F24; --ink:#E4ECEE; --ink-2:#93A6AD; --ink-3:#6E828B;
+    --line:#243239; --accent:#53BDD1; --accent-ink:#7FD0DF; --accent-soft:#12333C;
+    --pass:#4CC38A; --pass-soft:#12312383; --warn:#E2A33C; --warn-soft:#33270e83;
+    --fail:#E07A6E; --fail-soft:#38191583;
+    --you:#53BDD1; --comp1:#93A9B2; --comp2:#6C828C;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.5);
+  }
+  :root[data-theme="light"] {
+    --ground:#F5F8F8; --surface:#FFFFFF; --ink:#16232A; --ink-2:#52646E; --ink-3:#7E8F97;
+    --line:#DCE5E7; --accent:#0A7A93; --accent-ink:#075E72; --accent-soft:#E3F0F3;
+    --pass:#1F7A4D; --pass-soft:#E4F2EA; --warn:#B77817; --warn-soft:#F7EEDD;
+    --fail:#B3423A; --fail-soft:#F7E7E5;
+    --you:#0A7A93; --comp1:#5E7079; --comp2:#81959E;
+    --shadow:0 1px 2px rgba(22,35,42,.05),0 8px 24px -12px rgba(22,35,42,.12);
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); line-height:1.55; font-size:16px; }
+  a { color:var(--accent-ink); }
+  ::selection { background:var(--accent-soft); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+
+  .eyebrow { font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); }
+  .num { font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  h1,h2,h3 { font-family:var(--serif); font-weight:600; text-wrap:balance; line-height:1.15; }
+
+  nav { position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--ground) 88%, transparent);
+        backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .nav-in { max-width:1080px; margin:0 auto; padding:12px 24px; display:flex; align-items:center; gap:20px; }
+  .wordmark { font-family:var(--serif); font-size:1.15rem; font-weight:700; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:8px; }
+  .wordmark .glyph { color:var(--accent); font-family:var(--mono); font-weight:400; }
+  .nav-links { display:flex; gap:4px; margin-left:auto; flex-wrap:wrap; }
+  .nav-links a { font-family:var(--mono); font-size:.72rem; letter-spacing:.04em; color:var(--ink-2); text-decoration:none; padding:6px 10px; border-radius:6px; }
+  .nav-links a:hover { color:var(--ink); background:var(--surface); }
+  #themeBtn { font:inherit; font-size:.8rem; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; }
+
+  section { max-width:1080px; margin:0 auto; padding:72px 24px 8px; }
+  .section-head { margin-bottom:28px; max-width:640px; }
+  .section-head h2 { font-size:1.7rem; margin-top:6px; }
+  .section-head p { color:var(--ink-2); margin-top:8px; }
+
+  /* ---------- hero ---------- */
+  .hero { padding-top:88px; display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:start; }
+  .hero h1 { font-size:clamp(2rem,4.6vw,3.1rem); }
+  .hero .sub { color:var(--ink-2); margin:18px 0 26px; max-width:32rem; }
+  .scan-box { display:flex; gap:8px; max-width:430px; }
+  .scan-box input { flex:1; font:inherit; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--ink); }
+  .scan-box input::placeholder { color:var(--ink-3); }
+  .btn { font:inherit; font-weight:600; border:none; border-radius:10px; padding:12px 18px; cursor:pointer; background:var(--accent); color:#fff; transition:filter .15s ease; }
+  :root[data-theme="dark"] .btn, .btn.on-dark { color:#0D1518; }
+  .btn:hover { filter:brightness(1.08); }
+  .btn.ghost { background:transparent; color:var(--accent-ink); border:1px solid var(--line); }
+  .fineprint { font-family:var(--mono); font-size:.68rem; color:var(--ink-3); margin-top:10px; }
+
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); }
+  .proof-card { padding:20px; }
+  .proof-head { display:flex; align-items:baseline; gap:10px; border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:14px; }
+  .proof-head .brand { font-family:var(--serif); font-weight:700; }
+  .proof-head .score-inline { margin-left:auto; font-family:var(--mono); font-size:1.5rem; font-weight:700; color:var(--warn); }
+  .engine-row { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .chip { display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:.72rem; padding:8px 10px; border-radius:8px; border:1px solid var(--line); }
+  .chip .dot { width:8px; height:8px; border-radius:50%; flex:none; }
+  .chip.ok { background:var(--pass-soft); } .chip.ok .dot { background:var(--pass); }
+  .chip.no { background:var(--fail-soft); } .chip.no .dot { background:var(--fail); }
+  .proof-fix { margin-top:14px; padding:11px 12px; border-radius:10px; background:var(--warn-soft); font-size:.82rem; display:flex; gap:9px; }
+  .proof-fix b { font-weight:600; }
+  .flag-warn { color:var(--warn); font-family:var(--mono); }
+  .flag-ok { color:var(--pass); font-family:var(--mono); }
+
+  /* ---------- how it works ---------- */
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .step { padding:20px; }
+  .step .k { font-family:var(--mono); font-size:.7rem; color:var(--accent-ink); letter-spacing:.12em; }
+  .step h3 { font-size:1.15rem; margin:8px 0 6px; }
+  .step p { font-size:.88rem; color:var(--ink-2); }
+
+  /* ---------- scan demo ---------- */
+  .console { padding:0; overflow:hidden; }
+  .console-bar { display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line); }
+  .console-bar .t { font-family:var(--mono); font-size:.72rem; color:var(--ink-2); }
+  .console-body { padding:20px; min-height:280px; }
+  .scan-line { display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:.78rem; padding:7px 0; color:var(--ink-2); opacity:0; transform:translateY(4px); transition:opacity .3s ease, transform .3s ease; }
+  .scan-line.show { opacity:1; transform:none; }
+  .scan-line .st { margin-left:auto; }
+  .spinner { width:11px; height:11px; border:2px solid var(--line); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; flex:none; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .demo-controls { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+
+  /* ---------- report ---------- */
+  .report-grid { display:grid; grid-template-columns:340px 1fr; gap:14px; align-items:start; }
+  .panel { padding:20px; }
+  .panel h3 { font-size:1.02rem; margin-bottom:4px; }
+  .panel .hint { font-size:.8rem; color:var(--ink-2); margin-bottom:14px; }
+  .gauge-wrap { text-align:center; padding:26px 20px 20px; }
+  .gauge-num { font-family:var(--mono); font-size:2.9rem; font-weight:700; fill:var(--ink); }
+  .gauge-cap { font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; fill:var(--ink-3); }
+  .engine-detail { display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+  .engine-detail .row { display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; font-size:.82rem; }
+  .engine-detail .name { font-family:var(--mono); font-size:.72rem; }
+  .meter { height:6px; border-radius:4px; background:var(--line); overflow:hidden; }
+  .meter i { display:block; height:100%; border-radius:4px; background:var(--accent); }
+  .sov-row { display:grid; grid-template-columns:86px 1fr 52px; gap:12px; align-items:center; padding:7px 0; font-size:.82rem; }
+  .sov-row .nm { font-family:var(--mono); font-size:.72rem; text-align:right; color:var(--ink-2); }
+  .sov-row.me .nm { color:var(--ink); font-weight:700; }
+  .sov-track { height:16px; background:none; position:relative; }
+  .sov-track i { position:absolute; inset:0 auto 0 0; border-radius:0 4px 4px 0; }
+  .sov-row .val { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.78rem; color:var(--ink-2); }
+
+  table.prompts { width:100%; border-collapse:collapse; font-size:.84rem; }
+  .prompts th { font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); font-weight:500; }
+  .prompts th.c, .prompts td.c { text-align:center; }
+  .prompts tbody tr.main { cursor:pointer; }
+  .prompts tbody tr.main:hover { background:var(--accent-soft); }
+  .prompts td { padding:10px; border-bottom:1px solid var(--line); }
+  .p-ok,.p-no { font-family:var(--mono); font-size:.8rem; }
+  .p-ok { color:var(--pass); } .p-no { color:var(--fail); }
+  .answer-cell { background:var(--ground); font-size:.82rem; color:var(--ink-2); padding:14px 16px!important; }
+  .answer-cell .src { font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:6px; }
+  mark.comp { background:var(--fail-soft); color:var(--fail); padding:0 3px; border-radius:3px; font-weight:600; }
+  mark.me { background:var(--pass-soft); color:var(--pass); padding:0 3px; border-radius:3px; font-weight:600; }
+  .expander { font-family:var(--mono); color:var(--ink-3); font-size:.72rem; }
+
+  .cite { display:grid; grid-template-columns:1fr auto auto; gap:12px; align-items:center; padding:10px 0; border-bottom:1px solid var(--line); font-size:.83rem; }
+  .cite:last-child { border-bottom:none; }
+  .cite .url { font-family:var(--mono); font-size:.75rem; overflow-wrap:anywhere; }
+  .cite .n { font-family:var(--mono); font-size:.72rem; color:var(--ink-2); white-space:nowrap; }
+  .badge { font-family:var(--mono); font-size:.66rem; padding:3px 9px; border-radius:20px; white-space:nowrap; }
+  .badge.in { background:var(--pass-soft); color:var(--pass); }
+  .badge.out { background:var(--fail-soft); color:var(--fail); }
+
+  .fix { display:flex; gap:12px; padding:13px 0; border-bottom:1px solid var(--line); align-items:flex-start; }
+  .fix:last-of-type { border-bottom:none; }
+  .fix input[type=checkbox] { width:17px; height:17px; margin-top:2px; accent-color:var(--accent); cursor:pointer; flex:none; }
+  .fix .body { font-size:.86rem; }
+  .fix .why { font-size:.76rem; color:var(--ink-2); font-family:var(--mono); margin-top:3px; }
+  .fix.done .body { text-decoration:line-through; color:var(--ink-3); }
+  .fix-count { font-family:var(--mono); font-size:.72rem; color:var(--accent-ink); }
+
+  .proof-strip { display:flex; gap:26px; align-items:center; flex-wrap:wrap; }
+  .proof-strip .delta { font-family:var(--mono); font-size:2rem; font-weight:700; }
+  .proof-strip .delta .from { color:var(--ink-3); }
+  .proof-strip .delta .arrow { color:var(--ink-3); font-size:1.3rem; }
+  .proof-strip .delta .to { color:var(--pass); }
+  .proof-note { font-size:.84rem; color:var(--ink-2); max-width:24rem; }
+
+  .cta-band { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:26px; margin-top:14px;
+              display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+  .cta-band h3 { font-size:1.25rem; }
+  .cta-band p { font-size:.86rem; color:var(--ink-2); }
+  .cta-band .actions { margin-left:auto; display:flex; gap:10px; }
+
+  /* ---------- email ---------- */
+  .mail-frame { max-width:660px; margin:0 auto; }
+  .mail-meta { padding:14px 20px; border-bottom:1px solid var(--line); font-size:.8rem; color:var(--ink-2); }
+  .mail-meta b { color:var(--ink); }
+  .mail-body { padding:26px 30px; max-width:600px; margin:0 auto; }
+  .mail-score { display:flex; align-items:baseline; gap:12px; padding:16px 0 18px; border-bottom:1px solid var(--line); }
+  .mail-score .big { font-family:var(--mono); font-size:2.6rem; font-weight:700; }
+  .mail-score .up { color:var(--pass); font-family:var(--mono); font-weight:700; }
+  .mail-line { display:flex; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); font-size:.88rem; align-items:baseline; }
+  .mail-line .tag { font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; padding:3px 8px; border-radius:4px; flex:none; }
+  .tag.win { background:var(--pass-soft); color:var(--pass); }
+  .tag.loss { background:var(--fail-soft); color:var(--fail); }
+  .tag.fix { background:var(--warn-soft); color:var(--warn); }
+
+  /* ---------- pricing / faq ---------- */
+  .tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; align-items:stretch; }
+  .tier { padding:24px; display:flex; flex-direction:column; }
+  .tier.hot { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent), var(--shadow); }
+  .tier .nm { font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2); }
+  .tier .pr { font-family:var(--mono); font-size:2rem; font-weight:700; margin:8px 0 2px; }
+  .tier .per { font-size:.78rem; color:var(--ink-3); margin-bottom:14px; }
+  .tier ul { list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; font-size:.85rem; color:var(--ink-2); margin-bottom:20px; }
+  .tier ul li::before { content:"— "; color:var(--accent); }
+  .tier .btn { margin-top:auto; }
+  .no-credits { text-align:center; font-family:var(--mono); font-size:.74rem; color:var(--accent-ink); margin-top:16px; }
+
+  details.faq { border-bottom:1px solid var(--line); padding:4px 0; }
+  details.faq summary { cursor:pointer; font-weight:600; padding:12px 0; list-style:none; display:flex; }
+  details.faq summary::after { content:"+"; margin-left:auto; font-family:var(--mono); color:var(--ink-3); }
+  details.faq[open] summary::after { content:"–"; }
+  details.faq p { padding:0 0 14px; color:var(--ink-2); font-size:.9rem; max-width:44rem; }
+
+  footer { max-width:1080px; margin:64px auto 0; padding:24px; border-top:1px solid var(--line);
+           display:flex; gap:16px; font-family:var(--mono); font-size:.7rem; color:var(--ink-3); flex-wrap:wrap; }
+  footer .r { margin-left:auto; }
+
+  @media (max-width: 880px) {
+    .hero, .report-grid { grid-template-columns:1fr; }
+    .steps, .tiers { grid-template-columns:1fr; }
+    .nav-links { display:none; }
+  }
+</style>
+
+<nav>
+  <div class="nav-in">
+    <a class="wordmark" href="#top"><span class="glyph">⌖</span>BrandRank</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a><a href="#scan">Scan demo</a><a href="#report">Report</a>
+      <a href="#email">Monday report</a><a href="#pricing">Pricing</a>
+    </div>
+    <button id="themeBtn" aria-label="Toggle color theme">◐ Theme</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div>
+    <span class="eyebrow">AI search visibility · measured weekly</span>
+    <h1>Know what AI says about your brand — and fix it.</h1>
+    <p class="sub">BrandRank runs your real buyer prompts across ChatGPT, Perplexity, Gemini, and
+      Google AI Overviews every week. It scores your visibility, shows exactly which sources the
+      engines cite instead of you, and proves whether your fixes worked.</p>
+    <form class="scan-box" onsubmit="runScan(event)">
+      <input id="domainInput" type="text" inputmode="url" placeholder="yourcompany.com" aria-label="Your domain">
+      <button class="btn" type="submit">Run my free scan</button>
+    </form>
+    <p class="fineprint">Free scan · 10 prompts · no signup to view the report</p>
+  </div>
+
+  <div class="card proof-card" aria-label="Example report card">
+    <div class="proof-head">
+      <span class="eyebrow">Live example</span>
+      <span class="brand">plannery.com</span>
+      <span class="score-inline num" title="AI visibility score">38<span style="font-size:.8rem;color:var(--ink-3)">/100</span></span>
+    </div>
+    <div class="engine-row">
+      <span class="chip no"><span class="dot"></span>ChatGPT · absent</span>
+      <span class="chip ok"><span class="dot"></span>Perplexity · #2</span>
+      <span class="chip no"><span class="dot"></span>Gemini · absent</span>
+      <span class="chip ok"><span class="dot"></span>AI Overviews · cited</span>
+    </div>
+    <div class="proof-fix">
+      <span class="flag-warn">⚠</span>
+      <span><b>ChatGPT recommends TaskLoop first</b> for “best project management tool for small
+      agencies” — Plannery is absent from 4 of 5 sampled answers.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section id="how">
+  <div class="section-head">
+    <span class="eyebrow">Method</span>
+    <h2>Scan. Fix. Prove.</h2>
+    <p>No dashboards for the sake of dashboards. A weekly loop with receipts.</p>
+  </div>
+  <div class="steps">
+    <div class="card step"><span class="k">SCAN</span><h3>Your prompts, real engines</h3>
+      <p>We generate buyer-intent prompts from your site — you edit them — then run them across four
+      AI engines every week and record who gets named, in what position, citing which sources.</p></div>
+    <div class="card step"><span class="k">FIX</span><h3>A list, not a lecture</h3>
+      <p>Every losing prompt becomes a concrete action: the exact listicle to get on, the Reddit
+      thread to answer, the comparison page to publish, the schema to add.</p></div>
+    <div class="card step"><span class="k">PROVE</span><h3>Receipts, weekly</h3>
+      <p>Check off a fix and we track what it changed. We don’t promise #1 — we measure whether
+      what you did worked.</p></div>
+  </div>
+</section>
+
+<!-- ============ SCAN DEMO ============ -->
+<section id="scan">
+  <div class="section-head">
+    <span class="eyebrow">Free scan</span>
+    <h2>Watch a scan run</h2>
+    <p>The wait is part of the product — you see every prompt being tested, engine by engine.</p>
+  </div>
+  <div class="card console">
+    <div class="console-bar">
+      <span class="eyebrow">brandrank scan</span>
+      <span class="t num" id="scanTarget">plannery.com · 10 prompts · 4 engines</span>
+    </div>
+    <div class="console-body" id="consoleBody"></div>
+  </div>
+  <div class="demo-controls">
+    <button class="btn ghost" onclick="playScan()">▶ Replay scan</button>
+    <a class="btn ghost" href="#report" style="text-decoration:none">Skip to the report ↓</a>
+  </div>
+</section>
+
+<!-- ============ REPORT ============ -->
+<section id="report">
+  <div class="section-head">
+    <span class="eyebrow">The report</span>
+    <h2>Plannery — AI visibility report</h2>
+    <p class="num" style="font-family:var(--mono);font-size:.74rem;color:var(--ink-3)">WEEK OF JUL 6, 2026 · 25 PROMPTS · 4 ENGINES · vs TASKLOOP, BOARDLY</p>
+  </div>
+
+  <div class="report-grid">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <!-- score gauge -->
+      <div class="card gauge-wrap">
+        <svg viewBox="0 0 220 132" width="220" height="132" role="img" aria-label="Visibility score 38 of 100">
+          <path d="M 20 120 A 90 90 0 0 1 200 120" fill="none" stroke="var(--line)" stroke-width="14" stroke-linecap="round"/>
+          <path id="gaugeArc" d="M 20 120 A 90 90 0 0 1 200 120" fill="none" stroke="var(--accent)" stroke-width="14"
+                stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283"/>
+          <text x="110" y="100" text-anchor="middle" class="gauge-num num" id="gaugeNum">0</text>
+          <text x="110" y="122" text-anchor="middle" class="gauge-cap">VISIBILITY SCORE</text>
+        </svg>
+        <div class="engine-detail">
+          <div class="row"><span class="name">CHATGPT</span><span class="meter"><i style="width:20%"></i></span><span class="num" style="font-size:.75rem;color:var(--ink-2)">2/10</span></div>
+          <div class="row"><span class="name">PERPLEXITY</span><span class="meter"><i style="width:60%"></i></span><span class="num" style="font-size:.75rem;color:var(--ink-2)">6/10</span></div>
+          <div class="row"><span class="name">GEMINI</span><span class="meter"><i style="width:30%"></i></span><span class="num" style="font-size:.75rem;color:var(--ink-2)">3/10</span></div>
+          <div class="row"><span class="name">AI OVERVIEWS</span><span class="meter"><i style="width:40%"></i></span><span class="num" style="font-size:.75rem;color:var(--ink-2)">4/10</span></div>
+        </div>
+      </div>
+
+      <!-- share of voice -->
+      <div class="card panel">
+        <h3>Share of voice</h3>
+        <p class="hint">Mention rate across all 25 prompts, all engines.</p>
+        <div class="sov-row"><span class="nm">TASKLOOP</span><span class="sov-track"><i style="width:54%;background:var(--comp1)"></i></span><span class="val">54%</span></div>
+        <div class="sov-row me"><span class="nm">PLANNERY</span><span class="sov-track"><i style="width:31%;background:var(--you)"></i></span><span class="val">31%</span></div>
+        <div class="sov-row"><span class="nm">BOARDLY</span><span class="sov-track"><i style="width:22%;background:var(--comp2)"></i></span><span class="val">22%</span></div>
+      </div>
+
+      <!-- proof module -->
+      <div class="card panel">
+        <h3>Proof</h3>
+        <p class="hint">What completed fixes did to the score — projection based on brands that finished these 3 actions.</p>
+        <div class="proof-strip">
+          <span class="delta num"><span class="from">38</span> <span class="arrow">→</span> <span class="to">61</span></span>
+          <svg width="120" height="40" viewBox="0 0 120 40" role="img" aria-label="Score trend from 38 to 61 over five weeks">
+            <polyline points="4,30 32,26 60,19 88,12 116,6" fill="none" stroke="var(--pass)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="116" cy="6" r="3.5" fill="var(--pass)"/>
+          </svg>
+        </div>
+        <p class="proof-note" style="margin-top:10px">Typical five-week trajectory after completing the
+        listicle placement, the Reddit answer, and the comparison page. Measured, not promised.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <!-- prompt table -->
+      <div class="card panel">
+        <h3>Prompts</h3>
+        <p class="hint">Click a row to read what the engines actually answered. Showing 6 of 25.</p>
+        <div style="overflow-x:auto">
+        <table class="prompts">
+          <thead><tr><th>Buyer prompt</th><th class="c">GPT</th><th class="c">PPLX</th><th class="c">GEM</th><th class="c">AIO</th><th></th></tr></thead>
+          <tbody>
+            <tr class="main" onclick="toggleRow(this)" aria-expanded="false">
+              <td>best project management tool for small agencies</td>
+              <td class="c"><span class="p-no">✗</span></td><td class="c"><span class="p-ok">✓</span></td>
+              <td class="c"><span class="p-no">✗</span></td><td class="c"><span class="p-ok">✓</span></td>
+              <td class="expander">＋</td>
+            </tr>
+            <tr class="detail" hidden><td colspan="5" class="answer-cell">
+              <span class="src">ChatGPT · sampled Jul 6</span>
+              “For small agencies, <mark class="comp">TaskLoop</mark> and Asana are the most frequently
+              recommended options. <mark class="comp">TaskLoop</mark> stands out for client-facing
+              boards and per-project billing…” — <b>Plannery is not mentioned.</b>
+            </td></tr>
+            <tr class="main" onclick="toggleRow(this)" aria-expanded="false">
+              <td>TaskLoop alternatives</td>
+              <td class="c"><span class="p-no">✗</span></td><td class="c"><span class="p-no">✗</span></td>
+              <td class="c"><span class="p-ok">✓</span></td><td class="c"><span class="p-no">✗</span></td>
+              <td class="expander">＋</td>
+            </tr>
+            <tr class="detail" hidden><td colspan="5" class="answer-cell">
+              <span class="src">Gemini · sampled Jul 6</span>
+              “Popular TaskLoop alternatives include <mark class="comp">Boardly</mark>, Wrike, and
+              <mark class="me">Plannery</mark>, which reviewers describe as simpler for agencies under
+              ten people…” — <b>the only engine that names you here.</b>
+            </td></tr>
+            <tr class="main" onclick="toggleRow(this)" aria-expanded="false">
+              <td>project management software with client portals</td>
+              <td class="c"><span class="p-no">✗</span></td><td class="c"><span class="p-ok">✓</span></td>
+              <td class="c"><span class="p-no">✗</span></td><td class="c"><span class="p-no">✗</span></td>
+              <td class="expander">＋</td>
+            </tr>
+            <tr class="detail" hidden><td colspan="5" class="answer-cell">
+              <span class="src">Perplexity · sampled Jul 6</span>
+              “…<mark class="me">Plannery</mark> ranks second for client portals, cited via
+              g2.com and capterra.com. <mark class="comp">TaskLoop</mark> leads on integrations.”
+            </td></tr>
+            <tr class="main" onclick="toggleRow(this)" aria-expanded="false">
+              <td>is Plannery legit?</td>
+              <td class="c"><span class="p-ok">✓</span></td><td class="c"><span class="p-ok">✓</span></td>
+              <td class="c"><span class="p-ok">✓</span></td><td class="c"><span class="p-ok">✓</span></td>
+              <td class="expander">＋</td>
+            </tr>
+            <tr class="detail" hidden><td colspan="5" class="answer-cell">
+              <span class="src">ChatGPT · sampled Jul 6</span>
+              “Yes — <mark class="me">Plannery</mark> is a legitimate project-management tool with
+              4.5/5 on G2 (210 reviews)…” — <b>branded prompts are healthy; the gap is category prompts.</b>
+            </td></tr>
+            <tr class="main" onclick="toggleRow(this)" aria-expanded="false">
+              <td>free project management tools for freelancers</td>
+              <td class="c"><span class="p-no">✗</span></td><td class="c"><span class="p-no">✗</span></td>
+              <td class="c"><span class="p-no">✗</span></td><td class="c"><span class="p-no">✗</span></td>
+              <td class="expander">＋</td>
+            </tr>
+            <tr class="detail" hidden><td colspan="5" class="answer-cell">
+              <span class="src">All engines · sampled Jul 6</span>
+              No engine names <mark class="me">Plannery</mark> for this prompt. Every answer cites
+              zapier.com’s roundup — <b>which doesn’t list you</b> (see sources, below).
+            </td></tr>
+            <tr class="main" onclick="toggleRow(this)" aria-expanded="false">
+              <td>Plannery vs TaskLoop</td>
+              <td class="c"><span class="p-ok">✓</span></td><td class="c"><span class="p-ok">✓</span></td>
+              <td class="c"><span class="p-ok">✓</span></td><td class="c"><span class="p-no">✗</span></td>
+              <td class="expander">＋</td>
+            </tr>
+            <tr class="detail" hidden><td colspan="5" class="answer-cell">
+              <span class="src">Perplexity · sampled Jul 6</span>
+              “<mark class="me">Plannery</mark> is generally cheaper; <mark class="comp">TaskLoop</mark>
+              has more integrations. For agencies under 10 people, reviewers lean
+              <mark class="me">Plannery</mark>…” — sourced entirely from third-party posts, not your site.
+            </td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <!-- citations -->
+      <div class="card panel">
+        <h3>Sources the engines cite</h3>
+        <p class="hint">These pages decide the answers. Being on them is the whole game.</p>
+        <div class="cite"><span class="url">g2.com/categories/project-management</span><span class="n num">cited in 14 answers</span><span class="badge in">you’re listed</span></div>
+        <div class="cite"><span class="url">thedigitalpm.com/best-pm-tools-2026</span><span class="n num">cited in 11 answers</span><span class="badge out">not listed</span></div>
+        <div class="cite"><span class="url">reddit.com/r/projectmanagement · “PM tool for a 5-person agency?”</span><span class="n num">cited in 9 answers</span><span class="badge out">not mentioned</span></div>
+        <div class="cite"><span class="url">zapier.com/blog/best-project-management-apps</span><span class="n num">cited in 8 answers</span><span class="badge out">not listed</span></div>
+        <div class="cite"><span class="url">capterra.com/p/plannery</span><span class="n num">cited in 6 answers</span><span class="badge in">you’re listed</span></div>
+      </div>
+
+      <!-- fix list -->
+      <div class="card panel">
+        <h3>Fix list <span class="fix-count num" id="fixCount">· 0 of 4 done</span></h3>
+        <p class="hint">Each action maps to a gap above. Check one off and next week’s report measures what changed.</p>
+        <label class="fix"><input type="checkbox" onchange="fixToggle(this)">
+          <span class="body">Request listing on <b>thedigitalpm.com/best-pm-tools-2026</b>
+          <span class="why">⚠ cited in 11 answers you’re absent from — the single highest-leverage gap</span></span></label>
+        <label class="fix"><input type="checkbox" onchange="fixToggle(this)">
+          <span class="body">Answer the <b>r/projectmanagement</b> thread with a genuinely useful comparison
+          <span class="why">⚠ ChatGPT cites this thread for 3 of your losing prompts</span></span></label>
+        <label class="fix"><input type="checkbox" onchange="fixToggle(this)">
+          <span class="body">Publish a <b>Plannery vs TaskLoop</b> comparison page
+          <span class="why">⚠ you lose “TaskLoop alternatives” on 3 of 4 engines; competitors own the comparison</span></span></label>
+        <label class="fix"><input type="checkbox" onchange="fixToggle(this)">
+          <span class="body">Add FAQ schema to <b>plannery.com/pricing</b>
+          <span class="why">⚠ engines quote TaskLoop’s FAQ verbatim; yours isn’t machine-readable</span></span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div>
+      <h3>Track this weekly</h3>
+      <p>Same prompts, every week, with deltas and one email. Free for 7 days — no card.</p>
+    </div>
+    <div class="actions">
+      <button class="btn">Start tracking Plannery</button>
+      <button class="btn ghost">Download this report (PDF)</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMAIL ============ -->
+<section id="email">
+  <div class="section-head">
+    <span class="eyebrow">Retention artifact</span>
+    <h2>The Monday Report</h2>
+    <p>Twenty seconds, every Monday. Score delta, one win, one loss, one fix. This email is the product.</p>
+  </div>
+  <div class="card mail-frame">
+    <div class="mail-meta">
+      <b>BrandRank</b> &lt;monday@brandrank-reports.com&gt;<br>
+      <b>Subject:</b> Plannery: 42 (+4) — you gained AI Overviews, lost one Perplexity prompt
+    </div>
+    <div class="mail-body">
+      <span class="eyebrow">Week of Jul 13 · Plannery</span>
+      <div class="mail-score"><span class="big num">42</span><span class="up num">▲ +4</span>
+        <span style="font-size:.8rem;color:var(--ink-3)">vs last week</span></div>
+      <div class="mail-line"><span class="tag win">WIN</span><span>AI Overviews now cites <b>plannery.com/client-portals</b> for “project management software with client portals”.</span></div>
+      <div class="mail-line"><span class="tag loss">LOSS</span><span>Perplexity dropped you from “best PM tool for small agencies” — it now cites a fresh TaskLoop comparison post.</span></div>
+      <div class="mail-line"><span class="tag fix">FIX</span><span>Top fix this week: answer the r/projectmanagement thread — still cited in 9 answers you’re absent from.</span></div>
+      <div style="padding-top:20px"><button class="btn">View full report</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing">
+  <div class="section-head">
+    <span class="eyebrow">Pricing</span>
+    <h2>One flat price. No credits, no meters.</h2>
+    <p>Competitors meter prompts, articles, audits, and “agent budgets” separately. We don’t.</p>
+  </div>
+  <div class="tiers">
+    <div class="card tier">
+      <span class="nm">Solo</span><span class="pr num">$29</span><span class="per">per month · 1 brand</span>
+      <ul><li>50 prompts, weekly sweep</li><li>4 engines</li><li>Fix list + Monday Report</li><li>2 competitors tracked</li></ul>
+      <button class="btn ghost">Start free</button>
+    </div>
+    <div class="card tier hot">
+      <span class="nm">Growth</span><span class="pr num">$79</span><span class="per">per month · 3 brands</span>
+      <ul><li>50 prompts per brand</li><li>Weekly full sweep + 2×/week on fast engines</li><li>Proof loop &amp; fix attribution</li><li>Slack/email alerts</li></ul>
+      <button class="btn">Start free</button>
+    </div>
+    <div class="card tier">
+      <span class="nm">Agency</span><span class="pr num">$199</span><span class="per">per month · 15 brands</span>
+      <ul><li>White-label Monday Reports</li><li>Client workspaces</li><li>Daily sweeps on fast engines</li><li>Priority support</li></ul>
+      <button class="btn ghost">Start free</button>
+    </div>
+  </div>
+  <p class="no-credits">7-day trial · no card · cancel anytime · annual = 2 months free</p>
+
+  <div class="section-head" style="margin-top:56px">
+    <span class="eyebrow">Honest FAQ</span>
+    <h2 style="font-size:1.3rem">Questions we’d ask too</h2>
+  </div>
+  <details class="faq"><summary>Can you guarantee ChatGPT will recommend us?</summary>
+    <p>No — and nobody can. AI answers are non-deterministic and the engines change constantly.
+    What we guarantee is measurement: you’ll know exactly where you stand, what to try, and whether
+    it worked. That’s more than any “AI SEO” promise is worth.</p></details>
+  <details class="faq"><summary>Where do the prompts come from?</summary>
+    <p>We generate buyer-intent prompts from your website and category, and you edit the list.
+    Your score only means something if the prompts are ones your buyers actually ask.</p></details>
+  <details class="faq"><summary>Do you write the content fixes for us?</summary>
+    <p>We tell you exactly what to create and where it needs to exist — the specific listicle, thread,
+    or page. Drafting assistance is coming for Growth and Agency plans; execution stays with you or
+    your agency, because that’s who should own your voice.</p></details>
+  <details class="faq"><summary>How is this different from my SEO tool?</summary>
+    <p>SEO tools track ranked links on results pages. AI engines don’t return links — they synthesize
+    answers from sources they select. We track whether you’re <em>in the answer</em>, and which
+    sources put you (or your competitor) there.</p></details>
+  <details class="faq"><summary>What happens after I fix everything?</summary>
+    <p>New prompts, new competitors, and engine updates shift answers every week — that’s why the
+    Monday Report exists. Brands that “finish” usually keep tracking to defend what they won.</p></details>
+</section>
+
+<footer>
+  <span>⌖ BrandRank</span><span>Design concept — all brands and numbers are illustrative</span>
+  <span class="r num">2026</span>
+</footer>
+
+<script>
+  // ---------- theme ----------
+  const root = document.documentElement;
+  function setTheme(t){ root.setAttribute('data-theme', t); try{localStorage.setItem('br-theme',t)}catch(e){} }
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    setTheme(dark ? 'light' : 'dark');
+  });
+  try{ const s = localStorage.getItem('br-theme'); if (s) setTheme(s); }catch(e){}
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- hero scan input ----------
+  function runScan(e){
+    e.preventDefault();
+    const v = document.getElementById('domainInput').value.trim();
+    document.getElementById('scanTarget').textContent =
+      (v || 'plannery.com') + ' · 10 prompts · 4 engines';
+    document.getElementById('scan').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'});
+    playScan();
+  }
+
+  // ---------- scan console ----------
+  const ENGINES = ['ChatGPT','Perplexity','Gemini','AI Overviews'];
+  const PROMPTS = [
+    'best project management tool for small agencies',
+    'TaskLoop alternatives',
+    'project management software with client portals',
+    'is Plannery legit?',
+    'free project management tools for freelancers'
+  ];
+  let scanTimers = [];
+  function playScan(){
+    scanTimers.forEach(clearTimeout); scanTimers = [];
+    const body = document.getElementById('consoleBody');
+    body.innerHTML = '';
+    let t = 0;
+    ENGINES.forEach((eng) => {
+      const line = document.createElement('div');
+      line.className = 'scan-line';
+      line.innerHTML = '<span class="spinner"></span><span>' + eng + '</span>' +
+        '<span style="color:var(--ink-3)">· testing “' + PROMPTS[Math.floor(Math.random()*PROMPTS.length)] + '”</span>' +
+        '<span class="st num">…</span>';
+      body.appendChild(line);
+      scanTimers.push(setTimeout(() => line.classList.add('show'), reduced ? 0 : t += 350));
+      scanTimers.push(setTimeout(() => {
+        line.querySelector('.spinner').remove();
+        const hits = {ChatGPT:'2/10 prompts',Perplexity:'6/10 prompts',Gemini:'3/10 prompts','AI Overviews':'4/10 prompts'}[eng];
+        line.querySelector('.st').innerHTML =
+          '<span class="' + (parseInt(hits) >= 5 ? 'flag-ok' : 'flag-warn') + '">' + hits + '</span>';
+      }, reduced ? 0 : t + 900 + Math.random()*700));
+    });
+    const done = document.createElement('div');
+    done.className = 'scan-line';
+    done.innerHTML = '<span class="flag-ok">✓</span><span>Scan complete — visibility score</span>' +
+      '<span class="st num" style="font-weight:700;color:var(--warn);font-size:1rem">38/100</span>';
+    body.appendChild(done);
+    scanTimers.push(setTimeout(() => done.classList.add('show'), reduced ? 0 : 3400));
+  }
+  playScan();
+
+  // ---------- gauge count-up ----------
+  const gaugeArc = document.getElementById('gaugeArc'), gaugeNum = document.getElementById('gaugeNum');
+  const TARGET = 38, ARC = 283;
+  function setGauge(v){ gaugeNum.textContent = Math.round(v); gaugeArc.style.strokeDashoffset = ARC - (ARC * v/100); }
+  if (reduced) { setGauge(TARGET); }
+  else {
+    let played = false;
+    new IntersectionObserver((es) => {
+      es.forEach(en => {
+        if (en.isIntersecting && !played) {
+          played = true;
+          const t0 = performance.now();
+          (function tick(now){
+            const p = Math.min((now - t0)/900, 1);
+            setGauge(TARGET * (1 - Math.pow(1-p, 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          })(t0);
+        }
+      });
+    }, {threshold:.5}).observe(gaugeArc);
+  }
+
+  // ---------- prompt rows ----------
+  function toggleRow(tr){
+    const detail = tr.nextElementSibling, open = detail.hidden;
+    detail.hidden = !open;
+    tr.setAttribute('aria-expanded', String(open));
+    tr.querySelector('.expander').textContent = open ? '－' : '＋';
+  }
+
+  // ---------- fix list ----------
+  function fixToggle(cb){
+    cb.closest('.fix').classList.toggle('done', cb.checked);
+    const done = document.querySelectorAll('.fix input:checked').length;
+    document.getElementById('fixCount').textContent = '· ' + done + ' of 4 done';
+  }
+</script>
