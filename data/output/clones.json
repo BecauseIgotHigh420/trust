@@ -1,0 +1,1566 @@
+{
+  "generated_at": "2026-07-08T10:25:38.240866+00:00",
+  "count": 30,
+  "source": "TrustMRR API (https://trustmrr.com/docs/api)",
+  "scoring": "clone_score = 100 * demand^0.40 * distribution^0.35 * simplicity^0.25",
+  "clones": [
+    {
+      "rank": 1,
+      "clone_score": 78.4,
+      "demand": 0.8683,
+      "distribution": 0.5981,
+      "simplicity": 0.9725,
+      "name": "Anonymous startup",
+      "slug": "flight-award",
+      "category": "Travel",
+      "country": "",
+      "age_months": 6.8,
+      "mrr": 10921.02,
+      "arpu": 17.23,
+      "purity": 0.9252,
+      "subscribers": 634,
+      "mrr_growth30d_pct": 46.49,
+      "x_followers": 41,
+      "google_impressions_30d": null,
+      "tech_stack": "supabase, react, typescript, stripe",
+      "target_audience": "",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 634 paying subscribers (~$17/mo each)",
+        "\u2713 93% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Product-driven: only 41 X followers \u2014 revenue isn't audience-dependent",
+        "\u2713 Commodity stack: supabase, react, typescript, stripe"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/flight-award",
+      "x_url": "https://x.com/tor_stein_",
+      "description": "Service to make it easier for travellers to find award tickets",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.859,
+          "subscribers": 1.0,
+          "purity": 0.925,
+          "mrr_growth": 0.643
+        },
+        "distribution": {
+          "audience_independence": 0.998,
+          "seo": 0.3,
+          "rev_per_visitor": 0.22
+        },
+        "simplicity": {
+          "stack": 0.95,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "clone_score": 76.45,
+      "demand": 0.8858,
+      "distribution": 0.5544,
+      "simplicity": 0.9475,
+      "name": "Adspirer",
+      "slug": "adspirer",
+      "category": "Marketing",
+      "country": "US",
+      "age_months": 6.4,
+      "mrr": 54683.92,
+      "arpu": 73.7,
+      "purity": 0.7786,
+      "subscribers": 742,
+      "mrr_growth30d_pct": 30.02,
+      "x_followers": 152,
+      "google_impressions_30d": null,
+      "tech_stack": "nextjs, gcp, stripe, clerk, datadog, anthropic, docker, fastapi, github-actions, graphql, openai, redis, twilio",
+      "target_audience": "B2B",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 742 paying subscribers (~$74/mo each)",
+        "\u2713 Product-driven: only 152 X followers \u2014 revenue isn't audience-dependent",
+        "\u2713 Commodity stack: nextjs, gcp, stripe, clerk, datadog, anthropic\u2026"
+      ],
+      "website": "https://www.adspirer.com",
+      "trustmrr_url": "https://trustmrr.com/startup/adspirer",
+      "x_url": "https://x.com/abhilashreddi",
+      "description": "Adspirer is the AI-powered paid media agent for every business. We're building a future where any founder, marketer, or agency can manage their entire advertising operation \u2014 across Google, Meta, LinkedIn, and TikTok \u2014 through a simple conversation with their AI assistant.",
+      "breakdown": {
+        "demand": {
+          "mrr": 1.0,
+          "subscribers": 1.0,
+          "purity": 0.779,
+          "mrr_growth": 0.533
+        },
+        "distribution": {
+          "audience_independence": 0.999,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.85,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "clone_score": 76.42,
+      "demand": 0.722,
+      "distribution": 0.689,
+      "simplicity": 0.9675,
+      "name": "Virvid.ai",
+      "slug": "virvid-ai",
+      "category": "Content Creation",
+      "country": "FR",
+      "age_months": 8.4,
+      "mrr": 7854.0,
+      "arpu": 46.47,
+      "purity": 0.7573,
+      "subscribers": 169,
+      "mrr_growth30d_pct": -17.72,
+      "x_followers": null,
+      "google_impressions_30d": 1116559.0,
+      "tech_stack": "nextjs, supabase, vercel, stripe",
+      "target_audience": "B2C",
+      "enriched": true,
+      "on_sale": true,
+      "asking_price": 250000.0,
+      "flags": [
+        "\u2713 169 paying subscribers (~$46/mo each)",
+        "\u2713 Organic pull: 1,116,559 Google impressions/mo \u2014 search demand you can also capture",
+        "\u2713 Commodity stack: nextjs, supabase, vercel, stripe",
+        "\u2022 Listed for sale for $250,000 \u2014 founder may be exiting"
+      ],
+      "website": "https://virvid.ai",
+      "trustmrr_url": "https://trustmrr.com/startup/virvid-ai",
+      "x_url": "https://x.com/virvidai",
+      "description": "AI shorts generator that helps creators and businesses turn ideas into viral faceless videos for TikTok, Instagram and YouTube, all on autopilot. Just set it up once and watch your channel grow.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.829,
+          "subscribers": 0.826,
+          "purity": 0.757,
+          "mrr_growth": 0.215
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 1.0,
+          "rev_per_visitor": 0.345
+        },
+        "simplicity": {
+          "stack": 0.95,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "clone_score": 76.28,
+      "demand": 0.8642,
+      "distribution": 0.5521,
+      "simplicity": 0.9825,
+      "name": "1clickwebsite.ai",
+      "slug": "1clickwebsite-ai",
+      "category": "Artificial Intelligence",
+      "country": "US",
+      "age_months": 12.8,
+      "mrr": 9808.33,
+      "arpu": 42.46,
+      "purity": 0.8363,
+      "subscribers": 231,
+      "mrr_growth30d_pct": 89.44,
+      "x_followers": 129,
+      "google_impressions_30d": null,
+      "tech_stack": "nextjs, supabase, stripe, typescript",
+      "target_audience": "B2B",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 231 paying subscribers (~$42/mo each)",
+        "\u2713 84% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Product-driven: only 129 X followers \u2014 revenue isn't audience-dependent",
+        "\u2713 Commodity stack: nextjs, supabase, stripe, typescript"
+      ],
+      "website": "https://1clickwebsite.ai",
+      "trustmrr_url": "https://trustmrr.com/startup/1clickwebsite-ai",
+      "x_url": "https://x.com/boldslate",
+      "description": "[Private metric reference available after login.]",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.849,
+          "subscribers": 0.876,
+          "purity": 0.836,
+          "mrr_growth": 0.93
+        },
+        "distribution": {
+          "audience_independence": 0.993,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.95,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "clone_score": 75.69,
+      "demand": 0.925,
+      "distribution": 0.5494,
+      "simplicity": 0.86,
+      "name": "PROSP",
+      "slug": "prosp",
+      "category": "Artificial Intelligence",
+      "country": "FR",
+      "age_months": 10.5,
+      "mrr": 128005.0,
+      "arpu": 115.53,
+      "purity": 1.0,
+      "subscribers": 1108,
+      "mrr_growth30d_pct": null,
+      "x_followers": 3245,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2B",
+      "enriched": true,
+      "on_sale": true,
+      "asking_price": 1000000.0,
+      "flags": [
+        "\u2713 1,108 paying subscribers (~$116/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Product-driven: only 3,245 X followers \u2014 revenue isn't audience-dependent",
+        "\u2022 Listed for sale for $1,000,000 \u2014 founder may be exiting"
+      ],
+      "website": "https://prosp.ai",
+      "trustmrr_url": "https://trustmrr.com/startup/prosp",
+      "x_url": "https://x.com/yanndine",
+      "description": "Automate your LinkedIn Outreach with AI",
+      "breakdown": {
+        "demand": {
+          "mrr": 1.0,
+          "subscribers": 1.0,
+          "purity": 1.0,
+          "mrr_growth": 0.5
+        },
+        "distribution": {
+          "audience_independence": 0.987,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 6,
+      "clone_score": 75.14,
+      "demand": 0.8638,
+      "distribution": 0.5545,
+      "simplicity": 0.92,
+      "name": "Anonymous startup",
+      "slug": "freetcf",
+      "category": "Education",
+      "country": "CA",
+      "age_months": 12.2,
+      "mrr": 20954.37,
+      "arpu": 19.81,
+      "purity": 1.0,
+      "subscribers": 1058,
+      "mrr_growth30d_pct": 0.0,
+      "x_followers": 47,
+      "google_impressions_30d": null,
+      "tech_stack": "flutter, rust",
+      "target_audience": "",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 1,058 paying subscribers (~$20/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Product-driven: only 47 X followers \u2014 revenue isn't audience-dependent",
+        "\u26a0 Heavy stack: rust"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/freetcf",
+      "x_url": "https://x.com/tianquincy",
+      "description": "",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.92,
+          "subscribers": 1.0,
+          "purity": 1.0,
+          "mrr_growth": 0.333
+        },
+        "distribution": {
+          "audience_independence": 0.999,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.8,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 7,
+      "clone_score": 74.89,
+      "demand": 0.8626,
+      "distribution": 0.6306,
+      "simplicity": 0.76,
+      "name": "Rank Prompt",
+      "slug": "rank-prompt",
+      "category": "Artificial Intelligence",
+      "country": "US",
+      "age_months": 13.8,
+      "mrr": 33963.67,
+      "arpu": 150.95,
+      "purity": 0.9551,
+      "subscribers": 225,
+      "mrr_growth30d_pct": 13.24,
+      "x_followers": 28,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "Both",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 225 paying subscribers (~$151/mo each)",
+        "\u2713 96% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Product-driven: only 28 X followers \u2014 revenue isn't audience-dependent"
+      ],
+      "website": "https://rankprompt.com",
+      "trustmrr_url": "https://trustmrr.com/startup/rank-prompt",
+      "x_url": "https://x.com/tomymarengo",
+      "description": "Rank Prompt helps users understand how their website shows up on AI Search Engines and how to improve it. AEO (AI SEO).",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.964,
+          "subscribers": 0.872,
+          "purity": 0.955,
+          "mrr_growth": 0.422
+        },
+        "distribution": {
+          "audience_independence": 1.0,
+          "seo": 0.3,
+          "rev_per_visitor": 0.379
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 0.7,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "clone_score": 74.36,
+      "demand": 0.8351,
+      "distribution": 0.5869,
+      "simplicity": 0.86,
+      "name": "ChatSEO",
+      "slug": "chatseo",
+      "category": "SaaS",
+      "country": "FR",
+      "age_months": 7.3,
+      "mrr": 22390.31,
+      "arpu": 42.49,
+      "purity": 0.8009,
+      "subscribers": 527,
+      "mrr_growth30d_pct": 8.31,
+      "x_followers": 4514,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2B",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 527 paying subscribers (~$42/mo each)",
+        "\u2713 80% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Product-driven: only 4,514 X followers \u2014 revenue isn't audience-dependent"
+      ],
+      "website": "https://chatseo.app",
+      "trustmrr_url": "https://trustmrr.com/startup/chatseo",
+      "x_url": "https://x.com/iziatask",
+      "description": "Find & prioritize your SEO wins by chatting with your data.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.926,
+          "subscribers": 1.0,
+          "purity": 0.801,
+          "mrr_growth": 0.389
+        },
+        "distribution": {
+          "audience_independence": 0.908,
+          "seo": 0.3,
+          "rev_per_visitor": 0.366
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 9,
+      "clone_score": 74.11,
+      "demand": 0.9072,
+      "distribution": 0.5,
+      "simplicity": 0.93,
+      "name": "Laper",
+      "slug": "laper",
+      "category": "Artificial Intelligence",
+      "country": "US",
+      "age_months": 9.3,
+      "mrr": 15135.0,
+      "arpu": 32.34,
+      "purity": 0.7953,
+      "subscribers": 468,
+      "mrr_growth30d_pct": 172.21,
+      "x_followers": 39567,
+      "google_impressions_30d": null,
+      "tech_stack": "tailwindcss, typescript, react, supabase, postgresql, go, docker",
+      "target_audience": "B2C",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 468 paying subscribers (~$32/mo each)",
+        "\u26a0 Audience-driven: 39,567 X followers vs $15,135 MRR \u2014 their distribution won't transfer to you",
+        "\u2713 Commodity stack: tailwindcss, typescript, react, supabase, postgresql, go\u2026",
+        "\u26a0 Scope sprawl (platform) \u2014 big build surface"
+      ],
+      "website": "https://laper.ai",
+      "trustmrr_url": "https://trustmrr.com/startup/laper",
+      "x_url": "https://x.com/chunxiangai",
+      "description": "From first draft to final cut. The only platform where screenwriters and AI collaborate on scripts, breakdowns, storyboards, and production. A complete pre-production SaaS\u2014AI creative workspace, AI script auto-complete, AI-driven scene breakdowns, storyboards, art direction, cast management, location scouting, and budgeting. One platform for your entire team. Built to accelerate human storytelling.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.89,
+          "subscribers": 0.989,
+          "purity": 0.795,
+          "mrr_growth": 1.0
+        },
+        "distribution": {
+          "audience_independence": 0.433,
+          "seo": 0.3,
+          "rev_per_visitor": 1.0
+        },
+        "simplicity": {
+          "stack": 0.95,
+          "arpu_band": 1.0,
+          "scope": 0.85,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 10,
+      "clone_score": 73.48,
+      "demand": 0.8595,
+      "distribution": 0.5537,
+      "simplicity": 0.85,
+      "name": "ToolScale",
+      "slug": "toolscale",
+      "category": "Artificial Intelligence",
+      "country": "US",
+      "age_months": 11.5,
+      "mrr": 21983.08,
+      "arpu": 45.51,
+      "purity": 1.0,
+      "subscribers": 483,
+      "mrr_growth30d_pct": -5.26,
+      "x_followers": 126,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "Both",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 483 paying subscribers (~$46/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Product-driven: only 126 X followers \u2014 revenue isn't audience-dependent"
+      ],
+      "website": "https://toolscale.io",
+      "trustmrr_url": "https://trustmrr.com/startup/toolscale",
+      "x_url": "https://x.com/astonscale",
+      "description": "40+ Premium Ecom & AI Tools in one subscription",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.924,
+          "subscribers": 0.994,
+          "purity": 1.0,
+          "mrr_growth": 0.298
+        },
+        "distribution": {
+          "audience_independence": 0.997,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 11,
+      "clone_score": 69.47,
+      "demand": 0.8701,
+      "distribution": 0.4649,
+      "simplicity": 0.85,
+      "name": "Anonymous startup",
+      "slug": "shadow-co",
+      "category": "Education",
+      "country": "US",
+      "age_months": 16.4,
+      "mrr": 27785.08,
+      "arpu": 25.49,
+      "purity": 0.9614,
+      "subscribers": 1090,
+      "mrr_growth30d_pct": 2.27,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 1,090 paying subscribers (~$25/mo each)",
+        "\u2713 96% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/shadow-co",
+      "x_url": "",
+      "description": "(\u3063\u25d4\u25e1\u25d4)\u3063",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.946,
+          "subscribers": 1.0,
+          "purity": 0.961,
+          "mrr_growth": 0.348
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.45
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 12,
+      "clone_score": 69.16,
+      "demand": 0.9232,
+      "distribution": 0.4795,
+      "simplicity": 0.7275,
+      "name": "Peekaboo",
+      "slug": "peekaboo",
+      "category": "Marketing",
+      "country": "US",
+      "age_months": 10.7,
+      "mrr": 33271.64,
+      "arpu": 432.1,
+      "purity": 1.0,
+      "subscribers": 77,
+      "mrr_growth30d_pct": 163.38,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "nextjs, tailwindcss, prisma, planetscale",
+      "target_audience": "B2B",
+      "enriched": true,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 77 paying subscribers (~$432/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Commodity stack: nextjs, tailwindcss, prisma, planetscale",
+        "\u26a0 Scope sprawl (platform, erp) \u2014 big build surface"
+      ],
+      "website": "https://www.aipeekaboo.com",
+      "trustmrr_url": "https://trustmrr.com/startup/peekaboo",
+      "x_url": "",
+      "description": "Peekaboo (aipeekaboo.com) is an AI Visibility platform that helps brands, agencies, and publishers understand and improve how they appear in AI-generated search results and answers. We track your visibility across key AI engines including ChatGPT, Gemini, Perplexity, Google AI Overviews (AIO), and Google AI Mode, showing where and how your brand is mentioned, cited, or recommended.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.962,
+          "subscribers": 0.701,
+          "purity": 1.0,
+          "mrr_growth": 1.0
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.522
+        },
+        "simplicity": {
+          "stack": 0.95,
+          "arpu_band": 0.4,
+          "scope": 0.7,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 13,
+      "clone_score": 67.5,
+      "demand": 0.8985,
+      "distribution": 0.375,
+      "simplicity": 0.9725,
+      "name": "Anonymous startup",
+      "slug": "popular-link-in-bio",
+      "category": "Content Creation",
+      "country": "PL",
+      "age_months": 14.2,
+      "mrr": 26444.17,
+      "arpu": 40.01,
+      "purity": 1.0,
+      "subscribers": 661,
+      "mrr_growth30d_pct": null,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "express, mongodb, clickhouse",
+      "target_audience": "",
+      "enriched": true,
+      "on_sale": true,
+      "asking_price": 800000.0,
+      "flags": [
+        "\u2713 661 paying subscribers (~$40/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u2713 Commodity stack: express, mongodb, clickhouse",
+        "\u2022 Listed for sale for $800,000 \u2014 founder may be exiting"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/popular-link-in-bio",
+      "x_url": "",
+      "description": "Self growth link in bio. Feature social analytics for instagram (in-house scrapper). TikTok. Already built system for threads, twitter and YouTube but not shipped yet.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.941,
+          "subscribers": 1.0,
+          "purity": 1.0,
+          "mrr_growth": 0.5
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.95,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 14,
+      "clone_score": 63.98,
+      "demand": 0.858,
+      "distribution": 0.375,
+      "simplicity": 0.845,
+      "name": "Sleek",
+      "slug": "sleek",
+      "category": "Design Tools",
+      "country": "US",
+      "age_months": 3.8,
+      "mrr": 22947.0,
+      "arpu": 30.84,
+      "purity": 0.9769,
+      "subscribers": 744,
+      "mrr_growth30d_pct": -5.02,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2C",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 744 paying subscribers (~$31/mo each)",
+        "\u2713 98% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "https://sleek.design",
+      "trustmrr_url": "https://trustmrr.com/startup/sleek",
+      "x_url": "https://x.com/stefanofa",
+      "description": "Idea to mobile app designs",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.928,
+          "subscribers": 1.0,
+          "purity": 0.977,
+          "mrr_growth": 0.3
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 15,
+      "clone_score": 63.78,
+      "demand": 0.8141,
+      "distribution": 0.4277,
+      "simplicity": 0.755,
+      "name": "StudyScout",
+      "slug": "studyscout",
+      "category": "SaaS",
+      "country": "US",
+      "age_months": 5.9,
+      "mrr": 9710.99,
+      "arpu": 7.45,
+      "purity": 1.0,
+      "subscribers": 1303,
+      "mrr_growth30d_pct": -17.7,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2C",
+      "enriched": false,
+      "on_sale": true,
+      "asking_price": 220000.0,
+      "flags": [
+        "\u2713 1,303 paying subscribers (~$7/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u2022 Listed for sale for $220,000 \u2014 founder may be exiting"
+      ],
+      "website": "https://www.joinstudyscout.com",
+      "trustmrr_url": "https://trustmrr.com/startup/studyscout",
+      "x_url": "https://x.com/swell_kid",
+      "description": "StudyScout is a B2C SaaS aggregating high-paying online studies and focus groups. $0 paid ads, growth is 100% organic. Proven viral, repeatable UGC engine with massive upside via scaling content, paid",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.849,
+          "subscribers": 1.0,
+          "purity": 1.0,
+          "mrr_growth": 0.215
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.263
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 0.7,
+          "scope": 1.0,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 16,
+      "clone_score": 63.74,
+      "demand": 0.8469,
+      "distribution": 0.375,
+      "simplicity": 0.85,
+      "name": "Anonymous startup",
+      "slug": "private-enterprise-21",
+      "category": "Artificial Intelligence",
+      "country": "",
+      "age_months": 11.2,
+      "mrr": 32767.0,
+      "arpu": 64.38,
+      "purity": 0.9009,
+      "subscribers": 509,
+      "mrr_growth30d_pct": -15.74,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": false,
+      "on_sale": true,
+      "asking_price": 1500000.0,
+      "flags": [
+        "\u2713 509 paying subscribers (~$64/mo each)",
+        "\u2713 90% of revenue is recurring \u2014 true SaaS",
+        "\u2022 Listed for sale for $1,500,000 \u2014 founder may be exiting"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/private-enterprise-21",
+      "x_url": "",
+      "description": "Competitor to: Lovable, Replit, Base44, Anything.com, etc. $50k/mo, established product in hot industry, company is run by an officer. Plenty of potential. AI app/website builder (build by chatting to",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.961,
+          "subscribers": 1.0,
+          "purity": 0.901,
+          "mrr_growth": 0.228
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 17,
+      "clone_score": 63.62,
+      "demand": 0.843,
+      "distribution": 0.375,
+      "simplicity": 0.85,
+      "name": "Draft AI",
+      "slug": "draft-ai-1",
+      "category": "Marketing",
+      "country": "",
+      "age_months": 10.2,
+      "mrr": 14384.37,
+      "arpu": 14.47,
+      "purity": 0.9739,
+      "subscribers": 994,
+      "mrr_growth30d_pct": 0.0,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 994 paying subscribers (~$14/mo each)",
+        "\u2713 97% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "https://getdraft.app",
+      "trustmrr_url": "https://trustmrr.com/startup/draft-ai-1",
+      "x_url": "https://x.com/valery_uxui",
+      "description": "Draft AI is an iOS app that helps creators, entrepreneurs, and experts turn raw voice ideas into ready-to-publish social media content using AI.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.885,
+          "subscribers": 1.0,
+          "purity": 0.974,
+          "mrr_growth": 0.333
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 18,
+      "clone_score": 63.45,
+      "demand": 0.8648,
+      "distribution": 0.375,
+      "simplicity": 0.8075,
+      "name": "Hong Xuan Kow",
+      "slug": "hong-xuan-kow",
+      "category": "Artificial Intelligence",
+      "country": "US",
+      "age_months": 15.0,
+      "mrr": 9100.0,
+      "arpu": 19.4,
+      "purity": 0.6886,
+      "subscribers": 469,
+      "mrr_growth30d_pct": 531.94,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2C",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 469 paying subscribers (~$19/mo each)",
+        "\u26a0 Scope sprawl (platform) \u2014 big build surface"
+      ],
+      "website": "https://koe.sh",
+      "trustmrr_url": "https://trustmrr.com/startup/hong-xuan-kow",
+      "x_url": "https://x.com/xuan_xuan_hh",
+      "description": "Koe is an AI video generation platform",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.843,
+          "subscribers": 0.99,
+          "purity": 0.689,
+          "mrr_growth": 1.0
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 0.85,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 19,
+      "clone_score": 63.39,
+      "demand": 0.8527,
+      "distribution": 0.375,
+      "simplicity": 0.8225,
+      "name": "LocalRank.so",
+      "slug": "localrank-so",
+      "category": "Marketing",
+      "country": "CA",
+      "age_months": 16.5,
+      "mrr": 30100.92,
+      "arpu": 104.88,
+      "purity": 0.9603,
+      "subscribers": 287,
+      "mrr_growth30d_pct": -0.46,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2B",
+      "enriched": false,
+      "on_sale": true,
+      "asking_price": 1789000.0,
+      "flags": [
+        "\u2713 287 paying subscribers (~$105/mo each)",
+        "\u2713 96% of revenue is recurring \u2014 true SaaS",
+        "\u26a0 Scope sprawl (all-in-one) \u2014 big build surface",
+        "\u2022 Listed for sale for $1,789,000 \u2014 founder may be exiting"
+      ],
+      "website": "https://localrank.so",
+      "trustmrr_url": "https://trustmrr.com/startup/localrank-so",
+      "x_url": "https://x.com/indexsy",
+      "description": "All-in-one AI Local SEO Software",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.953,
+          "subscribers": 0.911,
+          "purity": 0.96,
+          "mrr_growth": 0.33
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 0.85,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 20,
+      "clone_score": 63.39,
+      "demand": 0.8385,
+      "distribution": 0.375,
+      "simplicity": 0.845,
+      "name": "SnapTest",
+      "slug": "snaptest",
+      "category": "Artificial Intelligence",
+      "country": "",
+      "age_months": 8.1,
+      "mrr": 11390.8,
+      "arpu": 11.85,
+      "purity": 1.0,
+      "subscribers": 961,
+      "mrr_growth30d_pct": 0.0,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2C",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 961 paying subscribers (~$12/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "https://apps.apple.com/app/id6754300629",
+      "trustmrr_url": "https://trustmrr.com/startup/snaptest",
+      "x_url": "https://x.com/emilqvaa",
+      "description": "Transform your handwritten notes into fun and engaging quizzes!",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.863,
+          "subscribers": 1.0,
+          "purity": 1.0,
+          "mrr_growth": 0.333
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 21,
+      "clone_score": 63.32,
+      "demand": 0.8332,
+      "distribution": 0.375,
+      "simplicity": 0.85,
+      "name": "Anonymous startup",
+      "slug": "anonymous-startup-20",
+      "category": "Mobile Apps",
+      "country": "CA",
+      "age_months": 11.2,
+      "mrr": 28511.37,
+      "arpu": 10.11,
+      "purity": 0.7988,
+      "subscribers": 2819,
+      "mrr_growth30d_pct": -3.23,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 2,819 paying subscribers (~$10/mo each)"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/anonymous-startup-20",
+      "x_url": "https://x.com/reezus",
+      "description": "",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.948,
+          "subscribers": 1.0,
+          "purity": 0.799,
+          "mrr_growth": 0.312
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 22,
+      "clone_score": 63.23,
+      "demand": 0.8333,
+      "distribution": 0.375,
+      "simplicity": 0.845,
+      "name": "AI Designer",
+      "slug": "ai-designer",
+      "category": "Artificial Intelligence",
+      "country": "US",
+      "age_months": 7.7,
+      "mrr": 11070.83,
+      "arpu": 27.61,
+      "purity": 0.967,
+      "subscribers": 401,
+      "mrr_growth30d_pct": 9.66,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2C",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 401 paying subscribers (~$28/mo each)",
+        "\u2713 97% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "https://www.aidesigner.ai",
+      "trustmrr_url": "https://trustmrr.com/startup/ai-designer",
+      "x_url": "https://x.com/bowlcutwiz",
+      "description": "We hate the look of AI coded websites. So we fixed that. Beautiful UI design for any project in just a few words.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.861,
+          "subscribers": 0.965,
+          "purity": 0.967,
+          "mrr_growth": 0.398
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 23,
+      "clone_score": 63.04,
+      "demand": 0.8475,
+      "distribution": 0.375,
+      "simplicity": 0.8125,
+      "name": "BuildMyAgent.io",
+      "slug": "buildmyagent-io",
+      "category": "",
+      "country": "US",
+      "age_months": 16.7,
+      "mrr": 21456.16,
+      "arpu": 47.05,
+      "purity": 0.9937,
+      "subscribers": 456,
+      "mrr_growth30d_pct": -13.13,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": false,
+      "on_sale": true,
+      "asking_price": 289000.0,
+      "flags": [
+        "\u2713 456 paying subscribers (~$47/mo each)",
+        "\u2713 99% of revenue is recurring \u2014 true SaaS",
+        "\u26a0 Scope sprawl (platform) \u2014 big build surface",
+        "\u2022 Listed for sale for $289,000 \u2014 founder may be exiting"
+      ],
+      "website": "https://buildmyagent.io",
+      "trustmrr_url": "https://trustmrr.com/startup/buildmyagent-io",
+      "x_url": "",
+      "description": "BuildMyAgent.io is a web-based platform that helps teams and agencies design, test, and deploy AI-driven agents and chatbots using LLMs and prompt engineering.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.922,
+          "subscribers": 0.985,
+          "purity": 0.994,
+          "mrr_growth": 0.246
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 0.85,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 24,
+      "clone_score": 62.99,
+      "demand": 0.8492,
+      "distribution": 0.375,
+      "simplicity": 0.8075,
+      "name": "fastwrite.io",
+      "slug": "fastwrite-io",
+      "category": "Artificial Intelligence",
+      "country": "DE",
+      "age_months": 14.0,
+      "mrr": 15631.44,
+      "arpu": 21.71,
+      "purity": 1.0,
+      "subscribers": 720,
+      "mrr_growth30d_pct": -2.43,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2C",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 720 paying subscribers (~$22/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u26a0 Scope sprawl (platform) \u2014 big build surface"
+      ],
+      "website": "https://www.fastwrite.io",
+      "trustmrr_url": "https://trustmrr.com/startup/fastwrite-io",
+      "x_url": "",
+      "description": "fastwrite.io is an edtech SaaS company building AI-powered writing tools for students. Its platform assists with drafting, editing, and improving academic texts, helping users produce higher-quality w",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.893,
+          "subscribers": 1.0,
+          "purity": 1.0,
+          "mrr_growth": 0.317
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 0.85,
+          "audience_fit": 0.85
+        }
+      }
+    },
+    {
+      "rank": 25,
+      "clone_score": 62.86,
+      "demand": 0.8181,
+      "distribution": 0.375,
+      "simplicity": 0.85,
+      "name": "Anonymous startup",
+      "slug": "private-venture-17",
+      "category": "Artificial Intelligence",
+      "country": "CA",
+      "age_months": 10.2,
+      "mrr": 17699.52,
+      "arpu": 33.27,
+      "purity": 0.9467,
+      "subscribers": 532,
+      "mrr_growth30d_pct": -28.0,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 532 paying subscribers (~$33/mo each)",
+        "\u2713 95% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/private-venture-17",
+      "x_url": "https://x.com/jesse_eisenbart",
+      "description": "",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.904,
+          "subscribers": 1.0,
+          "purity": 0.947,
+          "mrr_growth": 0.147
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 26,
+      "clone_score": 62.77,
+      "demand": 0.8741,
+      "distribution": 0.375,
+      "simplicity": 0.76,
+      "name": "Anonymous startup",
+      "slug": "anonymous-startup-2",
+      "category": "SaaS",
+      "country": "AU",
+      "age_months": 13.2,
+      "mrr": 37678.73,
+      "arpu": 165.26,
+      "purity": 1.0,
+      "subscribers": 228,
+      "mrr_growth30d_pct": 11.05,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 228 paying subscribers (~$165/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "",
+      "trustmrr_url": "https://trustmrr.com/startup/anonymous-startup-2",
+      "x_url": "https://x.com/hollidaylll",
+      "description": "One form to rule them all.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.974,
+          "subscribers": 0.874,
+          "purity": 1.0,
+          "mrr_growth": 0.407
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 0.7,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 27,
+      "clone_score": 62.75,
+      "demand": 0.8084,
+      "distribution": 0.375,
+      "simplicity": 0.86,
+      "name": "Synta",
+      "slug": "synta",
+      "category": "SaaS",
+      "country": "",
+      "age_months": 9.9,
+      "mrr": 12511.5,
+      "arpu": 46.68,
+      "purity": 1.0,
+      "subscribers": 268,
+      "mrr_growth30d_pct": -14.0,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2B",
+      "enriched": false,
+      "on_sale": true,
+      "asking_price": 100000.0,
+      "flags": [
+        "\u2713 268 paying subscribers (~$47/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS",
+        "\u2022 Listed for sale for $100,000 \u2014 founder may be exiting"
+      ],
+      "website": "https://synta.io",
+      "trustmrr_url": "https://trustmrr.com/startup/synta",
+      "x_url": "",
+      "description": "A premium model context protocol (MCP) server and web app designed to turn AI clients like Claude, Cursor, and OpenClaw into expert n8n workflow architects, with over 300+ businesses using it daily to",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.872,
+          "subscribers": 0.9,
+          "purity": 1.0,
+          "mrr_growth": 0.24
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 28,
+      "clone_score": 62.64,
+      "demand": 0.8625,
+      "distribution": 0.375,
+      "simplicity": 0.77,
+      "name": "AdStellar",
+      "slug": "adstellar",
+      "category": "Artificial Intelligence",
+      "country": "US",
+      "age_months": 8.4,
+      "mrr": 28770.4,
+      "arpu": 159.84,
+      "purity": 1.0,
+      "subscribers": 180,
+      "mrr_growth30d_pct": 18.19,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2B",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 180 paying subscribers (~$160/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "https://www.adstellar.ai",
+      "trustmrr_url": "https://trustmrr.com/startup/adstellar",
+      "x_url": "https://x.com/heygrantcooper",
+      "description": "Launch Meta ads 10x faster & find winning ad combos with 10x less ad budget.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.949,
+          "subscribers": 0.836,
+          "purity": 1.0,
+          "mrr_growth": 0.455
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 0.7,
+          "scope": 1.0,
+          "audience_fit": 1.0
+        }
+      }
+    },
+    {
+      "rank": 29,
+      "clone_score": 62.6,
+      "demand": 0.8097,
+      "distribution": 0.375,
+      "simplicity": 0.85,
+      "name": "Crush AI",
+      "slug": "crush-ai",
+      "category": "SaaS",
+      "country": "LT",
+      "age_months": 5.9,
+      "mrr": 20406.0,
+      "arpu": 81.95,
+      "purity": 1.0,
+      "subscribers": 249,
+      "mrr_growth30d_pct": -30.67,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "",
+      "enriched": false,
+      "on_sale": false,
+      "asking_price": null,
+      "flags": [
+        "\u2713 249 paying subscribers (~$82/mo each)",
+        "\u2713 100% of revenue is recurring \u2014 true SaaS"
+      ],
+      "website": "https://trycrush.ai",
+      "trustmrr_url": "https://trustmrr.com/startup/crush-ai",
+      "x_url": "",
+      "description": "Crush analyzes competitors, generates creatives, and optimizes your spend to scale what works and turn off what doesn't.",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.917,
+          "subscribers": 0.888,
+          "purity": 1.0,
+          "mrr_growth": 0.129
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.0
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 0.9
+        }
+      }
+    },
+    {
+      "rank": 30,
+      "clone_score": 62.5,
+      "demand": 0.7187,
+      "distribution": 0.4241,
+      "simplicity": 0.86,
+      "name": "BYQ Supply",
+      "slug": "byq-supply",
+      "category": "SaaS",
+      "country": "PL",
+      "age_months": 11.9,
+      "mrr": 8826.0,
+      "arpu": 28.84,
+      "purity": 0.4025,
+      "subscribers": 306,
+      "mrr_growth30d_pct": 26.11,
+      "x_followers": null,
+      "google_impressions_30d": null,
+      "tech_stack": "",
+      "target_audience": "B2B",
+      "enriched": false,
+      "on_sale": true,
+      "asking_price": 495000.0,
+      "flags": [
+        "\u2713 306 paying subscribers (~$29/mo each)",
+        "\u26a0 Only 40% of revenue recurs \u2014 one-off-heavy",
+        "\u2022 Listed for sale for $495,000 \u2014 founder may be exiting"
+      ],
+      "website": "https://byq.lemonsqueezy.com",
+      "trustmrr_url": "https://trustmrr.com/startup/byq-supply",
+      "x_url": "https://x.com/byq_studio",
+      "description": "[Private metric reference available after login.] Currently 362 paying subscribers plus 79 lifetime customers; $91k all-time gross via LemonSqueezy. [Private metric reference available after login.]",
+      "breakdown": {
+        "demand": {
+          "mrr": 0.84,
+          "subscribers": 0.921,
+          "purity": 0.402,
+          "mrr_growth": 0.507
+        },
+        "distribution": {
+          "audience_independence": 0.6,
+          "seo": 0.3,
+          "rev_per_visitor": 0.246
+        },
+        "simplicity": {
+          "stack": 0.6,
+          "arpu_band": 1.0,
+          "scope": 1.0,
+          "audience_fit": 1.0
+        }
+      }
+    }
+  ]
+}

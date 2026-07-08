@@ -18,6 +18,18 @@ class Revenue(BaseModel):
     total: float = 0.0
 
 
+class TechStackItem(BaseModel):
+    model_config = {"extra": "ignore"}
+    slug: str
+    category: Optional[str] = None
+
+
+class Cofounder(BaseModel):
+    model_config = {"extra": "ignore"}
+    xHandle: Optional[str] = None
+    xName: Optional[str] = None
+
+
 class Startup(BaseModel):
     """A startup listing as returned by the TrustMRR API.
 
@@ -59,6 +71,12 @@ class Startup(BaseModel):
     xHandle: Optional[str] = None
     xProfilePicture: Optional[str] = None
 
+    # ---- Detail-endpoint-only fields (populated after get_startup enrichment) ----
+    xFollowerCount: Optional[float] = None
+    isMerchantOfRecord: Optional[bool] = None
+    techStack: Optional[list[TechStackItem]] = None
+    cofounders: Optional[list[Cofounder]] = None
+
     @field_validator("foundedDate", "firstListedForSaleAt", mode="before")
     @classmethod
     def _empty_dates(cls, v):
@@ -98,3 +116,25 @@ class GemResult(BaseModel):
     age_months: Optional[float] = None
     revenue_velocity: float = 0.0  # total revenue / months since founded ($/month)
     score_breakdown: dict = Field(default_factory=dict)
+
+
+class CloneResult(BaseModel):
+    """A startup plus its Clone Score — how attractive it is to *replicate*.
+
+    clone_score = 100 x demand^0.40 x distribution^0.35 x simplicity^0.25
+    (geometric: a startup that fails badly on one axis can't be carried by the others)
+    """
+
+    model_config = {"extra": "ignore"}
+
+    startup: Startup
+    clone_score: float
+    demand: float          # 0..1  validated recurring demand
+    distribution: float    # 0..1  can *you* reach the same customers?
+    simplicity: float      # 0..1  can a small team rebuild this quickly?
+    age_months: Optional[float] = None
+    arpu: Optional[float] = None
+    purity: Optional[float] = None      # recurring share of revenue (mrr/last30d)
+    enriched: bool = False              # detail endpoint fetched?
+    flags: list[str] = Field(default_factory=list)   # human-readable ✓/⚠ notes
+    breakdown: dict = Field(default_factory=dict)    # sub-signal values

@@ -1,22 +1,64 @@
 # GemHunter 💎
 
-**Discover new startups that are already doing extremely well — ideas worth replicating.**
+**Find the best micro-SaaS to clone — backed by verified revenue data.**
 
 GemHunter pulls verified startup revenue from the
 [TrustMRR API](https://trustmrr.com/docs/api) (revenue verified hourly via
-Stripe / RevenueCat / etc.), keeps only **recently-founded** companies (default:
-the last 6 months), ranks them by a transparent *gem score*, and generates a
-standalone, filterable HTML website plus JSON/CSV exports.
+Stripe / RevenueCat / etc.) and ranks startups through two lenses:
 
-![gem score = traction + velocity + growth + efficiency](https://img.shields.io/badge/gem_score-traction%20%2B%20velocity%20%2B%20growth%20%2B%20efficiency-6b46c1)
+1. **Clone Score v2** (`gemhunter clones`, the default web view) — *"what
+   should **you** build?"* Gates out launch-week spikes, lifetime-deal pops,
+   services, and audience-driven products, then scores what's left on
+   **demand × distribution × simplicity**.
+2. **Gem score** (`gemhunter run`, `?view=gems` on the web) — *"who's winning
+   right now?"* Raw traction leaderboard for recently-founded startups.
 
-## Why
+Both produce a standalone, filterable HTML website plus JSON/CSV exports.
 
-New startups that hit strong, verified revenue *fast* are the clearest signal of
-a validated idea. GemHunter finds them so you can study — and replicate — what's
-working right now, instead of guessing.
+## Clone Score v2 — how it works
 
-## How the gem score works
+**Success ≠ clonability.** A payroll platform, a regulated fintech wallet, or a
+product whose revenue is really its founder's X audience can top a revenue
+leaderboard while being terrible clone targets. Clone Score separates the two
+questions.
+
+**Stage 1 — hard gates** (a candidate must pass all):
+
+| Gate | Default | Kills |
+|------|---------|-------|
+| Age window | 3–18 months | launch-week noise (younger) & locked-up markets (older) |
+| MRR floor | ≥ $500 | tip jars |
+| Subscription purity: MRR / last-30d revenue | ≥ 35% | lifetime-deal pops, one-off services |
+| Subscribers (when reported) | ≥ 10 | "two friends subscribed" |
+
+**Stage 2 — enrichment + scoring.** The top candidates get a detail fetch
+(tech stack, founder follower count, search impressions), then:
+
+```
+clone_score = 100 × demand^0.40 × distribution^0.35 × simplicity^0.25
+```
+
+Geometric, not additive — **one bad axis sinks the score**; monster MRR can't
+carry unreachable distribution.
+
+| Component | Signals |
+|-----------|---------|
+| **Demand** (0.40) | MRR level, paying-subscriber count, recurring share, MRR growth |
+| **Distribution** (0.35) | audience independence (X followers per MRR dollar — *penalty*), Google search impressions (*replicable demand — bonus*), revenue per visitor |
+| **Simplicity** (0.25) | commodity vs heavy tech stack, ARPU in the $10–120/mo sweet spot, single-job scope vs "all-in-one platform" sprawl, B2B fit |
+
+Every card shows the three component bars plus ✓/⚠ clone-brief flags
+(e.g. *"⚠ Audience-driven: 80k followers vs $2k MRR — their distribution won't
+transfer to you"*). Unknown signals fall back to explicit neutral priors, and
+un-enriched candidates are marked *preliminary*.
+
+```bash
+gemhunter clones                        # scan, gate, enrich top 40, export
+gemhunter clones --enrich 40 --top 30   # deep analysis (~3s per enriched startup)
+gemhunter clones --min-age 3 --max-age 12 --min-mrr 1000 --category saas
+```
+
+## How the gem score works (v1 leaderboard)
 
 Each candidate is scored **0–100** from four log-scaled, min-max-normalised
 signals, so no single mega-outlier dominates:

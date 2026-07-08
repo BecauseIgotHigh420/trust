@@ -22,6 +22,8 @@ from urllib.parse import parse_qs, urlparse
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from gemhunter.client import TrustMRRClient, TrustMRRError  # noqa: E402
+from gemhunter.clone_report import generate_clones_html  # noqa: E402
+from gemhunter.clone_score import enrich_and_rescore, rank_clones  # noqa: E402
 from gemhunter.report import generate_html  # noqa: E402
 from gemhunter.scoring import filter_recent, score_gems  # noqa: E402
 
@@ -41,7 +43,15 @@ def _float(qs: dict, key: str, default: float, lo: float, hi: float) -> float:
 
 
 def build_page(qs: dict) -> str:
-    """Build the gems HTML from live TrustMRR data. Params come from the query string."""
+    """Build HTML from live TrustMRR data. ``?view=gems`` for the original
+    leaderboard; the default view is Clone Score v2 (micro-SaaS to replicate)."""
+    view = qs.get("view", ["clones"])[0]
+    if view == "gems":
+        return build_gems_page(qs)
+    return build_clones_page(qs)
+
+
+def build_gems_page(qs: dict) -> str:
     months = _float(qs, "months", 6.0, 0.5, 24.0)
     max_pages = _int(qs, "max_pages", 4, 1, 8)  # keep request fast + API-light
     min_mrr = _float(qs, "min_mrr", 100.0, 0.0, 1_000_000.0)
@@ -56,6 +66,29 @@ def build_page(qs: dict) -> str:
     recent = filter_recent(fetched, max_age_months=months)
     gems = score_gems(recent, min_monthly_revenue=min_mrr)[:top]
     return generate_html(gems, max_age_months=months)
+
+
+def build_clones_page(qs: dict) -> str:
+    """Clone Score v2. Serverless budget maths: 4 list pages + up to 12 detail
+    fetches at 2s spacing ≈ 16 calls / ~35s — inside the 60s function limit and
+    under TrustMRR's 20 req/min. The CLI (`gemhunter clones --enrich 40`) is the
+    place for deeper enrichment; results here are edge-cached for 6h anyway."""
+    min_age = _float(qs, "min_age", 3.0, 0.0, 36.0)
+    max_age = _float(qs, "max_age", 18.0, min_age, 48.0)
+    min_mrr = _float(qs, "min_mrr", 500.0, 0.0, 1_000_000.0)
+    min_purity = _float(qs, "min_purity", 0.35, 0.0, 1.0)
+    max_pages = _int(qs, "max_pages", 4, 1, 6)
+    enrich = _int(qs, "enrich", 10, 0, 12)
+    top = _int(qs, "top", 40, 1, 100)
+    category = qs.get("category", [None])[0] or None
+
+    client = TrustMRRClient(min_interval=2.0)
+    fetched = list(client.iter_startups(sort="revenue-desc", category=category, max_pages=max_pages))
+    prelim = rank_clones(fetched, min_age=min_age, max_age=max_age,
+                         min_mrr=min_mrr, min_purity=min_purity)
+    results = enrich_and_rescore(prelim, client, top_n=min(enrich, len(prelim)))[:top]
+    return generate_clones_html(results, min_age_months=min_age, max_age_months=max_age,
+                                gems_href="?view=gems")
 
 
 def _error_page(title: str, message: str) -> str:
@@ -73,7 +106,10 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):  # noqa: N802 (Vercel requires this signature)
         qs = parse_qs(urlparse(self.path).query)
         status = 200
-        cache = "public, s-maxage=3600, stale-while-revalidate=86400"
+        # Clone view does detail enrichment (expensive) -> cache longer.
+        is_clones = qs.get("view", ["clones"])[0] != "gems"
+        max_age = 21600 if is_clones else 3600
+        cache = f"public, s-maxage={max_age}, stale-while-revalidate=86400"
         try:
             if not os.environ.get("TRUSTMRR_API_KEY"):
                 status = 500
