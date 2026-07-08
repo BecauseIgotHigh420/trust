@@ -163,7 +163,14 @@ Automated give-first outreach: an agent pre-scans prospects and cold-emails one 
 
 **Weeks 5–6 — the report + free scan.** Monday Report email/PDF (delta-focused), alerts ("you disappeared from Perplexity for prompt X"), public free-scan page. Soft launch to communities. *Milestone: first stranger pays.*
 
-**Weeks 7–8 — money features.** Citation tracking table ("who does ChatGPT cite in your niche — get on those pages"), fix-list recommendations (rule-based + LLM: schema gaps, missing comparison page, unanswered Reddit threads), annual billing, onboarding polish. 
+**Weeks 7–8 — money features.** Citation tracking table ("who does ChatGPT cite in your niche — get on those pages"), fix-list recommendations (rule-based + LLM: schema gaps, missing comparison page, unanswered Reddit threads), annual billing, onboarding polish.
+
+> **The improvement loop (monitor → fix → prove).** Don't stop at scores — the retention product is the loop:
+> 1. **Fix List** (wk 7–8): per losing prompt, concrete actions derived from data we already store — "ChatGPT cites [3 URLs] you're not on: request listing / answer this Reddit thread / create a You-vs-X comparison page / add FAQ schema." AI engines synthesize from retrieved sources, so visibility levers are finite and checklistable: presence in cited pages, community threads, retrieval-shaped own content, entity hygiene (schema, llms.txt), review-site mass.
+> 2. **Proof loop** (wk 9–10): users check off actions; next runs attribute — "3 actions completed → present in 4/5 answers, score 34 → 61." Receipts kill churn, generate case studies, and are the honest posture in a snake-oil-prone category: never promise rankings, measure experiments.
+> 3. **Execution assists** (v2, scoped): generate the artifact per detected gap only — comparison-page draft, schema JSON-LD, outreach email, Reddit answer. Never a generic article writer (that's the credit-burning sprawl we gated out).
+>
+> Agency note: agencies execute the fixes (their billable work); we supply the fix list + white-label before/after proof. Layers 1–2 make agencies loyal, not threatened. 
 
 **Weeks 9–10 — distribution sprint.** 10 programmatic landing pages, 3 comparison pages, first AI Visibility Index post, Product Hunt launch. Instrument funnel.
 
